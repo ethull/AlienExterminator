@@ -18,12 +18,19 @@
 - state transitions
 
 ### variables
-- bool playerDetected
+- bool isIdle
 - bool isHit
 - bool isDead
 - bool isNextToPlayer
 - bool isCloseToPlayer
 - bool isFarFromPlayer
+
+## new variables
+- isIdle
+- isHit
+- isDead
+- isAttacking
+- is 
 
 ### state list
 - IDLE
@@ -35,7 +42,7 @@
 - CHASEATTACKFAR (Walk after player and attack from far) (attack player for low damage)
 - DEAD
 
-### alien state transitions
+### alien code state transitions
 - if ANY STATE
     - if isDead -> DEAD STATE -> end animation
 - if IDLE STATE // from here we could gethit, we could start patrolling
@@ -64,3 +71,4 @@
 ## questions/thoughts
 - link between idle and chase?
     - only for going back?
+- animation is strictly about animation, all the logic is in the code
