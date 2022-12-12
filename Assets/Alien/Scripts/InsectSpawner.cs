@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class InsectSpawner : MonoBehaviour
 {
-    public float spawnTime = 100; //Spawn Time
+    public float spawnTime = 100; // Spawn Time
     public float spawnLimit = 3;
     public float spawned = 0;
-    public GameObject insect; //Insect prefab
-    public float max = -3; //Max x/z spawn position
-    public float min = 3; //Min x/z spawn position
+    public GameObject insect; // Insect prefab
+    public float max = -3; // Max x/z spawn position
+    public float min = 3; // Min x/z spawn position
+    public GameObject beam; // Beam of light used to spawn insects from the sky
 
+    // Create a list of spawn locations
+    public GameObject[] spawners;
     // Create a list of spawned insects
-    private List<GameObject> insects = new List<GameObject>();
+    public List<GameObject> insects = new List<GameObject>();
         
-    // Start is called before the first frame update
     void Start()
     {
-        //Start the spawn update
+        // Add all spawn locations to the list
+        spawners = GameObject.FindGameObjectsWithTag("Spawn");
+
+        // Start the spawn update
         StartCoroutine("Spawn");
     }
 
@@ -29,20 +34,16 @@ public class InsectSpawner : MonoBehaviour
     
     IEnumerator Spawn()
     {
-        Debug.Log("Spawning alien no: "+spawned);
-        //Wait spawnTime
-        //Spawn prefab is apple
-        //GameObject prefab = insect;
-        //if (Random.Range(0,100) < 30){
-        //  prefab = bomb;
-        //}
-        //Spawn prefab at randomc position
+        // Choose a random spawn location
+        Transform spawnLocation = spawners[Random.Range(0, spawners.Length)].transform;
+
+        //Debug.Log("Spawning alien no: "+spawned);
         // add randomness so they spawn slightly apart
-        Debug.Log(Time.timeScale);
-        float xpos = transform.position.x + Random.Range(min, max + 1);
-        float zpos = transform.position.z + Random.Range(min, max + 1);
-        GameObject spawnedInsect = Instantiate(insect, new Vector3(xpos, transform.position.y, zpos), Quaternion.Euler(0,0, Random.Range (-90F, 90F))) as GameObject;
-        insects.Add(spawnedInsect);
+        //Debug.Log(Time.timeScale);
+        float xpos = spawnLocation.position.x + Random.Range(min, max + 1);
+        float zpos = spawnLocation.position.z + Random.Range(min, max + 1);
+        GameObject spawnedInsect = Instantiate(beam, new Vector3(xpos, spawnLocation.position.y, zpos), Quaternion.Euler(0,Random.Range (-90F, 90F),0)) as GameObject;
+        //insects.Add(spawnedInsect);
         spawned++;
 
         yield return new WaitForSeconds(spawnTime);
