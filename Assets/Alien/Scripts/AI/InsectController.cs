@@ -13,6 +13,8 @@ public class InsectController : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        
         agent = this.GetComponent<NavMeshAgent>(); // Grab agents NavMeshAgent.
         anim = this.GetComponent<Animator>(); // Grab agents Animator component.
         currentState = new Idle(this.gameObject, agent, anim, player); // Create our first state.

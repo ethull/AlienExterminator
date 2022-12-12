@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class State : MonoBehaviour
+// doesnt need to be a monobehaviour because we dont attach it as a game object
+public class State
 {
     // states the npc can be in
     public enum STATE

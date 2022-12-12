@@ -34,7 +34,9 @@ public class Chase : State
             }
             //TODO add state for when hit (GetHit)
         }
+
     }
+
 
     public override void Exit()
     {

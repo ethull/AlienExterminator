@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Linq; // for Enumerable
 
 // Constructor for Patrol state.
 public class Patrol : State
 {
     int currentIndex = -1;
+    int[] path;
+    // we want System.random and not Unity random because want integers
+    System.Random rnd = new System.Random();
     public Patrol(GameObject _npc, UnityEngine.AI.NavMeshAgent _agent, Animator _anim, Transform _player)
                 : base(_npc, _agent, _anim, _player)
     {
@@ -17,19 +21,34 @@ public class Patrol : State
 
     public override void Enter()
     {
-        float lastDist = Mathf.Infinity; // Store distance between NPC and waypoints.
+        // Generate a random path between waypoints
+        path = Enumerable.Range(0, GameEnvironment.Singleton.Checkpoints.Count).OrderBy(c => rnd.Next()).ToArray();
+        //Debug.Log("Enumerable");
+        //foreach (var item in path) {
+        //    Debug.Log(item);
+        //}
+        
+        //currentIndex = 0;
+        // Choose a random waypoint to go to
+        //while (randomIndex != lastIndex) randomIndex = Random.Range(0, GameEnvironment.Singleton.Checkpoints.Count);
+        // make sure we dont go to the same index twice
+        //lastIndex = randomIndex;
+        //int currentIndex = randomIndex;
+
+        //float lastDist = Mathf.Infinity; // Store distance between NPC and waypoints.
 
         // Calculate closest waypoint by looping around each one and calculating the distance between the NPC and each waypoint.
-        for (int i = 0; i < GameEnvironment.Singleton.Checkpoints.Count; i++)
-        {
-            GameObject thisWP = GameEnvironment.Singleton.Checkpoints[i];
-            float distance = Vector3.Distance(npc.transform.position, thisWP.transform.position);
-            if(distance < lastDist)
-            {
-                currentIndex = i - 1; // Need to subtract 1 because in Update, we add 1 to i before setting the destination.
-                lastDist = distance;
-            }
-        }
+        //for (int i = 0; i < GameEnvironment.Singleton.Checkpoints.Count; i++)
+        //{
+        //    GameObject thisWP = GameEnvironment.Singleton.Checkpoints[i];
+        //    float distance = Vector3.Distance(npc.transform.position, thisWP.transform.position);
+        //    if(distance < lastDist)
+        //    {
+        //        currentIndex = i - 1; // Need to subtract 1 because in Update, we add 1 to i before setting the destination.
+        //        lastDist = distance;
+        //    }
+        //}
+        
         anim.SetTrigger("isWalking"); // Start agent walking animation.
         base.Enter();
     }
@@ -45,7 +64,7 @@ public class Patrol : State
             else
                 currentIndex++;
 
-            agent.SetDestination(GameEnvironment.Singleton.Checkpoints[currentIndex].transform.position); // Set agents destination to position of next waypoint.
+            agent.SetDestination(GameEnvironment.Singleton.Checkpoints[path[currentIndex]].transform.position); // Set agents destination to position of next waypoint.
         }
 
         if (CanSeePlayer())
