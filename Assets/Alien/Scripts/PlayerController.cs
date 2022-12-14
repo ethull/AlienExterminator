@@ -15,13 +15,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnDamaged(float dmg, GameObject source)
     {
-        Debug.Log("Player damaged");
+        //Debug.Log("Player damaged");
         // TODO add any animations
     }
     
     public void OnDie()
     {
-        Debug.Log("Player dead");
+        //Debug.Log("Player dead");
         // TODO play game over screen
     }
 }

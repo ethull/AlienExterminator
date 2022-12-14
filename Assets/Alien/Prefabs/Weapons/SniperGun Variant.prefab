@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1630111793
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1630111794}
-  m_Layer: 0
-  m_Name: muzzle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1630111794
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630111793}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.003581941, y: 0.09008388, z: 0.5120053}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 727941201115445908}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &723877104230183556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38,13 +7,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1898867835, guid: 0460a539b95c36d43a61b9c176cdca57, type: 3}
+      propertyPath: range
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898867835, guid: 0460a539b95c36d43a61b9c176cdca57, type: 3}
+      propertyPath: damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898867835, guid: 0460a539b95c36d43a61b9c176cdca57, type: 3}
+      propertyPath: gunName
+      value: Sniper
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898867835, guid: 0460a539b95c36d43a61b9c176cdca57, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898867835, guid: 0460a539b95c36d43a61b9c176cdca57, type: 3}
+      propertyPath: muzzleFlash
+      value: 
+      objectReference: {fileID: 100000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
     - target: {fileID: 1481417426184300, guid: 0460a539b95c36d43a61b9c176cdca57, type: 3}
       propertyPath: m_Name
       value: SniperGun Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1481417426184300, guid: 0460a539b95c36d43a61b9c176cdca57, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_TagString
+      value: Gun
       objectReference: {fileID: 0}
     - target: {fileID: 4944291180234768, guid: 0460a539b95c36d43a61b9c176cdca57, type: 3}
       propertyPath: m_RootOrder
@@ -97,7 +86,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1481417426184300, guid: 0460a539b95c36d43a61b9c176cdca57, type: 3}
   m_PrefabInstance: {fileID: 723877104230183556}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1898867835
+--- !u!114 &-4072064548984587017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,15 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7db46610f421ab47934a8e04ad6185d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzlePos: {fileID: 0}
-  muzzleFlash: {fileID: 0}
-  impactEffect: {fileID: 100002, guid: 56bfc2f4b4a0c534c8ef3d0fd1124c44, type: 3}
-  damage: 10
-  range: 100
-  impactForce: 10
-  fireRate: 30
---- !u!4 &727941201115445908 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4944291180234768, guid: 0460a539b95c36d43a61b9c176cdca57, type: 3}
-  m_PrefabInstance: {fileID: 723877104230183556}
-  m_PrefabAsset: {fileID: 0}
+  gunName: 
+  muzzleFlash: {fileID: 100000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
+  impactEffect: {fileID: 100002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
+  damage: 100
+  range: 200
+  impactForce: 50
+  fireRate: 1

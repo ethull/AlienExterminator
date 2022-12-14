@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &989820367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 989820368}
+  - component: {fileID: 989820369}
+  m_Layer: 0
+  m_Name: WeaponHolder
+  m_TagString: WeaponHolder
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &989820368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989820367}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4288335847994348}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &989820369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989820367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ece05a1b223a9a4491ae3f8964d4288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedWeapon: 0
 --- !u!1 &1129895495175522
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,6 +89,7 @@ GameObject:
   - component: {fileID: 20724644957976244}
   - component: {fileID: 81419976148993170}
   - component: {fileID: 124044488792268592}
+  - component: {fileID: 1480932659}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: MainCamera
@@ -62,7 +108,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 989820368}
   m_Father: {fileID: 4204582120663750}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -125,6 +172,22 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264833946912854}
   m_Enabled: 1
+--- !u!114 &1480932659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264833946912854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8da4eba4ef98fbfa0daadaad22c4dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powercell: {fileID: 6687756942612601342, guid: 03d1b94369ebe6fc7a15c7d97073578e, type: 3}
+  no_cell: 0
+  throwSound: {fileID: 8300000, guid: 471ad32afe0e845cb9ab31b2e742d0a3, type: 3}
+  throwSpeed: 20
 --- !u!1 &1743903104223250
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +202,7 @@ GameObject:
   - component: {fileID: 54587624234064098}
   - component: {fileID: 136239539305442568}
   - component: {fileID: 4530773986035176047}
+  - component: {fileID: 269220145638465856}
   - component: {fileID: 114051214696948948}
   m_Layer: 0
   m_Name: FirstPerson-AIO
@@ -314,9 +378,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50100bee62e580e47afbf643452afcc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 20
-  CurrentHealth: 20
+  MaxHealth: 300
+  CurrentHealth: 300
   IsDead: 0
+--- !u!114 &269220145638465856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743903104223250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e1124a6a7c42bc41b9dbd29dfc77a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RifleGun: {fileID: 2323725388227913633, guid: e15227a01c6b7a947bf74314c169e0d4, type: 3}
+  PistolGun: {fileID: 8825261800504324312, guid: 2adbfdffdb6cd1c498dbd917d2bafa3c, type: 3}
+  HeavyGun: {fileID: 2543354021801857850, guid: 326cd5fa11de14d4f83306c93c9cb447, type: 3}
+  SniperGun: {fileID: 724790588664060648, guid: 6a102f85bf670414e9925effdb48578a, type: 3}
+  currentWeapons: []
 --- !u!114 &114051214696948948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,9 +473,9 @@ MonoBehaviour:
   jumpSound: {fileID: 0}
   landSound: {fileID: 0}
   footStepSounds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: fb6839219f2c6674996d76c7d9626311, type: 3}
+  - {fileID: 8300000, guid: fb6839219f2c6674996d76c7d9626311, type: 3}
+  - {fileID: 8300000, guid: fb6839219f2c6674996d76c7d9626311, type: 3}
   fsmode: 1
   dynamicFootstep:
     materialMode: 0

@@ -8,10 +8,15 @@ public class Health : MonoBehaviour
     public float MaxHealth = 10f; // set default health, if its not set in the editor
     public UnityAction<float, GameObject> OnDamaged;
     public UnityAction OnDie;
+    public UnityAction<float> OnHealed;
+
 
     public float CurrentHealth = 0f;
     
     public bool IsDead = false;
+
+    // we dont want to heal if we are already at max health
+    public bool CanPickup() => CurrentHealth < MaxHealth;
     
     void Start()
     {
@@ -20,7 +25,7 @@ public class Health : MonoBehaviour
     
     public void TakeDamage(float damage, GameObject damageSource)
     {
-        Debug.Log("Health: x damage taken from y:  " + damage + " " + damageSource);
+        //Debug.Log("Health: x damage taken from y:  " + damage + " " + damageSource);
         float healthBefore = CurrentHealth;
         CurrentHealth -= damage;
         CurrentHealth = Mathf.Clamp(CurrentHealth, 0f, MaxHealth);
@@ -55,6 +60,20 @@ public class Health : MonoBehaviour
         {
             IsDead = true;
             OnDie?.Invoke();
+        }
+    }
+    
+    public void Heal(float healAmount)
+    {
+        float healthBefore = CurrentHealth;
+        CurrentHealth += healAmount;
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0f, MaxHealth);
+
+        // call OnHeal action
+        float trueHealAmount = CurrentHealth - healthBefore;
+        if (trueHealAmount > 0f)
+        {
+            OnHealed?.Invoke(trueHealAmount);
         }
     }
 }

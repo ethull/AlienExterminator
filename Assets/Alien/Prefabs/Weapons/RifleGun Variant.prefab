@@ -118,10 +118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7db46610f421ab47934a8e04ad6185d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzlePos: {fileID: 0}
+  gunName: Rifle
   muzzleFlash: {fileID: 100000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
   impactEffect: {fileID: 100002, guid: d39ab699aa314a147969fd483aa55205, type: 3}
-  damage: 10
-  range: 100
+  damage: 5
+  range: 60
   impactForce: 10
-  fireRate: 30
+  fireRate: 50

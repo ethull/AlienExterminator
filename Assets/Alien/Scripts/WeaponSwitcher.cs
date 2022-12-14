@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// weapon switcher
+// allows to switch between all weapons that are in its children
 public class WeaponSwitcher : MonoBehaviour
 {
     public int selectedWeapon = 0; 
@@ -17,6 +19,11 @@ public class WeaponSwitcher : MonoBehaviour
     void Update()
     {
         SwitchWeapon();
+    }
+    
+    // Switch to new weapon after a its is picked up
+    public void SwitchToNewWeapon(){
+        selectedWeapon = transform.childCount - 1;
     }
     
     // Check input for what weapon the player has selected

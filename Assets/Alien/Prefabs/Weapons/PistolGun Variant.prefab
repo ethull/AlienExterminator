@@ -46,6 +46,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1374600452982646, guid: 57bf5071e0a1c8947b8918a8f96184a6, type: 3}
+      propertyPath: m_TagString
+      value: Gun
+      objectReference: {fileID: 0}
     - target: {fileID: 4054100971495624, guid: 57bf5071e0a1c8947b8918a8f96184a6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -114,10 +118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7db46610f421ab47934a8e04ad6185d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzlePos: {fileID: 0}
-  muzzleFlash: {fileID: 0}
+  gunName: Pistol
+  muzzleFlash: {fileID: 100000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
   impactEffect: {fileID: 100002, guid: 20b31fcfaed0cb842a56fbbe2419428f, type: 3}
-  damage: 10
-  range: 100
+  damage: 15
+  range: 60
   impactForce: 10
-  fireRate: 30
+  fireRate: 20

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    public string gunName;
     private Transform fpsCam;
     private Transform muzzlePos;
     public GameObject muzzleFlash;
@@ -63,6 +64,8 @@ public class Gun : MonoBehaviour
                     closest.transform.GetComponent<Health>().TakeDamage(damage, gameObject);
                     //Destroy(closest.transform.gameObject); // destroy
                 }
+            } else if (closest.transform.tag == "Destroyable") {
+                Destroy(closest.transform.gameObject);
             }
             
             GameObject impact = Instantiate(impactEffect, closest.point, Quaternion.LookRotation(closest.normal));
