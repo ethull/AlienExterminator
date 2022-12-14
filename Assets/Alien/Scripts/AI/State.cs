@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 // doesnt need to be a monobehaviour because we dont attach it as a game object
 public class State
@@ -15,7 +16,7 @@ public class State
     // 'Events' - where we are in the running of a STATE.
     public enum EVENT
     {
-        ENTER, UPDATE, EXIT
+        ENTER, UPDATE, EXIT, OVER
     };
     
     public STATE name; // To store the name of the STATE.
@@ -30,7 +31,7 @@ public class State
     float visAngle = 90.0f; // ... and if the player is within 70 degrees of the line of sight
     //float idleAttackDistance = 1.0f; // distance at which stop moving at attack; is this needed? gonna use the below one instead and attack
     float attackDistance = 5.0f; // distance at which we can attack
-    
+
     // Constructor for State
     public State(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player)
     {
@@ -49,6 +50,7 @@ public class State
     // The method that will get run from outside and progress the state through each of the different stages.
     public State Process()
     {
+        if (stage == EVENT.OVER) return this; // if the animation is over, we want to do nothing;
         if (stage == EVENT.ENTER) Enter();
         if (stage == EVENT.UPDATE) Update();
         if (stage == EVENT.EXIT)
@@ -72,6 +74,18 @@ public class State
         }
         return false; // NPC CANNOT see the player.
     }
+    
+    // Can the NPC see the player using distance, but not angle, for detection after being shot
+    public bool CanSensePlayer()
+    {
+        Vector3 direction = player.position - npc.transform.position; // Provides the vector from the NPC to the player.
+        // If player is close enough to the NPC AND within the visible viewing angle...
+        if(direction.magnitude < visDist)
+        {
+            return true; // NPC CAN see the player.
+        }
+        return false; // NPC CANNOT see the player.
+    }
 
     public bool CanAttackPlayer()
     {
@@ -81,5 +95,23 @@ public class State
             return true; // NPC IS close enough to the player to attack.
         }
         return false; // NPC IS NOT close enough to the player to attack.
+    }
+
+    // These scripts are called by insect controller when Health UnityActions are fired
+    
+    // When called from any state, we change to GetHit state
+    // Because we can get hit at any time
+    public void OnDamaged(float dmg, GameObject src){
+        // If we arent dead move to GetHit state
+        if (name != STATE.DEAD){
+            nextState = new GetHit(npc, agent, anim, player);
+            Exit();
+        }
+    }
+
+    // When called from any state, we change to Dead state
+    public void OnDie(){
+        nextState = new Dead(npc, agent, anim, player);
+        Exit();
     }
 }

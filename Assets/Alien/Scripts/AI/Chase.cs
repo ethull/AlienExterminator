@@ -32,7 +32,6 @@ public class Chase : State
                 nextState = new Patrol(npc, agent, anim, player); // If NPC can't see player, set correct nextState.
                 stage = EVENT.EXIT; // Set stage correctly as we are finished with Chase state.
             }
-            //TODO add state for when hit (GetHit)
         }
 
     }

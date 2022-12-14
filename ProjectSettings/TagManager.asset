@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Checkpoint
   - Spawn
+  - Gun
   layers:
   - Default
   - TransparentFX

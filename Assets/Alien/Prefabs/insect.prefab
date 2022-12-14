@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: insect
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5be2c6dc7d0cd11418701026bf971b37, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5be2c6dc7d0cd11418701026bf971b37, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -80,6 +84,36 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!111 &983175931
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648160860483821761}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &983175925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648160860483821761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50100bee62e580e47afbf643452afcc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 50
+  CurrentHealth: 25
+  IsDead: 0
 --- !u!195 &8987482427052741530
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -115,3 +149,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+--- !u!135 &1799364883
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648160860483821761}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 1.1, z: 1.08}
