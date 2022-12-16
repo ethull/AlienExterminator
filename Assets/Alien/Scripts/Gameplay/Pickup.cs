@@ -41,7 +41,7 @@ public class Pickup : MonoBehaviour
 
     protected virtual void OnPicked(GameObject playerController)
     {
-        Debug.Log("picked up by: " + playerController );
+        Debug.Log("picked up by: " + playerController);
         //PlayPickupFeedback();
     }
 }

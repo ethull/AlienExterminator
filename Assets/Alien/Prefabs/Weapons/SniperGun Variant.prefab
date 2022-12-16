@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7db46610f421ab47934a8e04ad6185d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunName: 
+  gunName: Sniper
   muzzleFlash: {fileID: 100000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
   impactEffect: {fileID: 100002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
   damage: 100

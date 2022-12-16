@@ -13,6 +13,11 @@ TagManager:
   - WeaponHolder
   - Pickup
   - Destroyable
+  - MainManager
+  - LevelButtons
+  - LevelManager
+  - AlienSpawner
+  - Checkpoints
   layers:
   - Default
   - TransparentFX

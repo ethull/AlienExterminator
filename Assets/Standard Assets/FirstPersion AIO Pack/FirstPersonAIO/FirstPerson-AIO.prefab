@@ -197,6 +197,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4448068258976056}
+  - component: {fileID: 2736697707179490244}
   - component: {fileID: 82712217391461128}
   - component: {fileID: 2522296368840063407}
   - component: {fileID: 54587624234064098}
@@ -227,6 +228,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
+--- !u!114 &2736697707179490244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743903104223250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77fe8e0ecee3b9f4194005cf8469d027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 0}
 --- !u!82 &82712217391461128
 AudioSource:
   m_ObjectHideFlags: 0
@@ -378,8 +392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50100bee62e580e47afbf643452afcc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 300
-  CurrentHealth: 300
+  MaxHealth: 100
+  CurrentHealth: 100
   IsDead: 0
 --- !u!114 &269220145638465856
 MonoBehaviour:

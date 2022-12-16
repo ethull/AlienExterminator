@@ -26,6 +26,12 @@ public sealed class GameEnvironment
                     GameObject.FindGameObjectsWithTag("Checkpoint"));
 
                 instance.checkpoints = instance.checkpoints.OrderBy(waypoint => waypoint.name).ToList(); // Order waypoints in ascending alphabetical order by name, so that the NPC follows them correctly.
+            } else if(instance.Checkpoints[0] == null){
+                instance = new GameEnvironment();
+                instance.Checkpoints.AddRange(
+                    GameObject.FindGameObjectsWithTag("Checkpoint"));
+
+                instance.checkpoints = instance.checkpoints.OrderBy(waypoint => waypoint.name).ToList(); // Order waypoints in ascending alphabetical order by name, so that the NPC follows them correctly.
             }
             return instance;
         }

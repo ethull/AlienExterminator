@@ -14,6 +14,7 @@ public class InsectController : MonoBehaviour
     public GameObject Target;
     
     protected Health health;
+    private LevelManager levelManager;
 
     void Start()
     {
@@ -29,6 +30,8 @@ public class InsectController : MonoBehaviour
         // Subscribe the health unity actions, so we know when the insect is damaged or dead
         health.OnDamaged += OnDamaged;
         health.OnDie += OnDie;
+
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
     }
 
     void Update()
@@ -53,13 +56,14 @@ public class InsectController : MonoBehaviour
         currentState.OnDie();
         // Destroy gameObject after x seconds (after animation)
         Destroy(gameObject, 2.11f);
-        // wait x seconds before destroy
+        // Tell level manager that an enemy has died
+        levelManager.enemyKilled();
     }
 
     public void Attack(){
         if (Target != null){
-            Debug.Log(gameObject);
-            Debug.Log(Time.time);
+            //Debug.Log(gameObject);
+            //Debug.Log(Time.time);
             Target.GetComponent<Health>().TakeDamage(5, gameObject);
         }
     }

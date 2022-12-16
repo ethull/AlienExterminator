@@ -25,7 +25,7 @@ public class Health : MonoBehaviour
     
     public void TakeDamage(float damage, GameObject damageSource)
     {
-        //Debug.Log("Health: x damage taken from y:  " + damage + " " + damageSource);
+        Debug.Log("Health: x damage taken from y:  " + damage + " " + damageSource);
         float healthBefore = CurrentHealth;
         CurrentHealth -= damage;
         CurrentHealth = Mathf.Clamp(CurrentHealth, 0f, MaxHealth);

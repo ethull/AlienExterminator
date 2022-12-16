@@ -7,8 +7,14 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Alien/Scenes/MainMenu.unity
-    guid: c180d173deb9c834a849aa011ad89fdf
+    guid: 2e64077cea8a4c94191c4d58f8cfebac
   - enabled: 1
     path: Assets/Alien/Scenes/level01.unity
     guid: e0abe863bbd08bb889614016254d6ed1
+  - enabled: 1
+    path: Assets/Alien/Scenes/level02.unity
+    guid: ac499029e62ba9747bdeecad53248cb3
+  - enabled: 1
+    path: Assets/Alien/Scenes/level03.unity
+    guid: 793b8121d02e89745a0f97786aec70c2
   m_configObjects: {}

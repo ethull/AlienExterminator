@@ -8,7 +8,7 @@ using System.Linq; // for Enumerable
 public class Patrol : State
 {
     int currentIndex = -1;
-    int[] path;
+    public int[] path;
     // we want System.random and not Unity random because want integers
     System.Random rnd = new System.Random();
     public Patrol(GameObject _npc, UnityEngine.AI.NavMeshAgent _agent, Animator _anim, Transform _player)
@@ -23,6 +23,7 @@ public class Patrol : State
     {
         // Generate a random path between waypoints
         path = Enumerable.Range(0, GameEnvironment.Singleton.Checkpoints.Count).OrderBy(c => rnd.Next()).ToArray();
+        Debug.Log(path);
         //Debug.Log("Enumerable");
         //foreach (var item in path) {
         //    Debug.Log(item);
@@ -64,6 +65,12 @@ public class Patrol : State
             else
                 currentIndex++;
 
+            Debug.Log("alien patrol script u cunt");
+            Debug.Log("GE checkpoints: "+GameEnvironment.Singleton.Checkpoints);
+            Debug.Log("path: "+path);
+            Debug.Log("path ci:"+path[currentIndex]);
+            Debug.Log("GE wh path: "+GameEnvironment.Singleton.Checkpoints[path[currentIndex]].transform.position);
+            Debug.Log("GE wh path: "+GameEnvironment.Singleton.Checkpoints[path[currentIndex]].transform.position);
             agent.SetDestination(GameEnvironment.Singleton.Checkpoints[path[currentIndex]].transform.position); // Set agents destination to position of next waypoint.
         }
 

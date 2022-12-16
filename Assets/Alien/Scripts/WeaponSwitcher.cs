@@ -24,6 +24,7 @@ public class WeaponSwitcher : MonoBehaviour
     // Switch to new weapon after a its is picked up
     public void SwitchToNewWeapon(){
         selectedWeapon = transform.childCount - 1;
+        SelectWeapon();
     }
     
     // Check input for what weapon the player has selected
