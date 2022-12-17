@@ -24,15 +24,14 @@ public class InsectSpawner : MonoBehaviour
     // Spawn a single enemy
     public void SpawnInsect()
     {
-        // Choose a random spawn location
+        // Choose a random spawn location from one of the avaliable spawners
+        //  will change with level
         Transform spawnLocation = spawners[Random.Range(0, spawners.Length)].transform;
 
-        //Debug.Log("Spawning alien no: "+spawned);
         // add randomness so they spawn slightly apart
-        //Debug.Log(Time.timeScale);
         float xpos = spawnLocation.position.x + Random.Range(min, max + 1);
         float zpos = spawnLocation.position.z + Random.Range(min, max + 1);
+        // spawn a beam that will spawn the insect
         GameObject spawnedInsect = Instantiate(beam, new Vector3(xpos, spawnLocation.position.y, zpos), Quaternion.Euler(0,Random.Range (-90F, 90F),0)) as GameObject;
-        insects.Add(spawnedInsect);
     }
 }

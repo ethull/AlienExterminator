@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Extends Pickup with weapon functionality
 public class WeaponPickup : Pickup
 {
     // prefab of weapon that we are gonna pick up
@@ -19,7 +20,10 @@ public class WeaponPickup : Pickup
 
     protected override void OnPicked(GameObject player)
     {
+        // add the weapon to the player inventory
         Inventory Inventory = player.GetComponent<Inventory>();
+        PlayPickupFeedback();
+        // if we do add the weapon (if we dont already have it) then switch to it
         if (Inventory.AddWeapon(WeaponPrefab)){
             player.GetComponentInChildren<WeaponSwitcher>().SwitchToNewWeapon();
         }

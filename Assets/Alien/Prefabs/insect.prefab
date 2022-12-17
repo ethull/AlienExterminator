@@ -163,3 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   Target: {fileID: 0}
+  InsectAttackSfx: {fileID: 8300000, guid: ef980d09b569380459e609fe90ef1db2, type: 3}
+  InsectDamageSfx: {fileID: 8300000, guid: a7fae22399a6e1d448dc0dd2210f1dac, type: 3}
+  InsectDeathSfx: {fileID: 8300000, guid: fc8c8ffdca36b0147ba6ddca7b583f27, type: 3}
+  InsectDamageVfx: {fileID: 100000, guid: 18a11fd6df8ceb449b8785301026d639, type: 3}

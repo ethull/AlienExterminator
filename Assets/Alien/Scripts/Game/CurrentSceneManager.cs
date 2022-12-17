@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 #endif
 
+// this class manages the current scene
 public class CurrentSceneManager : MonoBehaviour
 {
 
@@ -11,6 +12,7 @@ public class CurrentSceneManager : MonoBehaviour
     {
         switch(levelNum){
             case 1:
+                // step the currentLevel before loading the scene, so LevelManager can set difficulty params
                 MainManager.Instance.currentLevel = 1;
                 SceneManager.LoadScene("level01");
                 break;

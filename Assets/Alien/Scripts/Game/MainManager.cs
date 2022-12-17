@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 
+// main static class, manage current menu and save data
 public class MainManager : MonoBehaviour
 {
     // Start() and Update() methods deleted - we don't need them right now
@@ -70,10 +71,10 @@ public class MainManager : MonoBehaviour
         obtainedWeapons = new string[] {"", "", "", ""}; // no weapons obtained
     }
     
-    // NOT IMPLEMENTED
     // reset your save file
     public void ResetSave(){
         SetDefaults();
         WriteSave();
+        LoadSave();
     }
 }

@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-// doesnt need to be a monobehaviour because we dont attach it as a game object
+// this class is the parent class for all enemy states
+// class doesnt need to be a monobehaviour because we dont attach it as a game object
+//  and we want to instantiate it
 public class State
 {
     // states the npc can be in
@@ -27,10 +29,11 @@ public class State
     protected State nextState; // This is NOT the enum above, it's the state that gets to run after the one currently running (so if IDLE was then going to PATROL, nextState would be PATROL).
     protected NavMeshAgent agent; // To store the NPC NavMeshAgent component.
     
-    float visDist = 10.0f; // if player <10 distance from enemy, it can see it, so it moves to chase state
-    float visAngle = 90.0f; // ... and if the player is within 70 degrees of the line of sight
+    float visDist = 15.0f; // if player <10 distance from enemy, it can see it, so it moves to chase state
+    float visAngle = 270.0f; // ... and if the player is within 70 degrees of the line of sight
     //float idleAttackDistance = 1.0f; // distance at which stop moving at attack; is this needed? gonna use the below one instead and attack
-    float attackDistance = 5.0f; // distance at which we can attack
+    float attackDistance = 7.0f; // distance at which we can attack
+    float stopDistance = 1.5f; // distance from player in which we stop following
 
     // Constructor for State
     public State(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player)
@@ -95,6 +98,14 @@ public class State
             return true; // NPC IS close enough to the player to attack.
         }
         return false; // NPC IS NOT close enough to the player to attack.
+    }
+    
+    // is the insect close to player, used to stop it just in front of the player
+    // NOT USED
+    public bool IsCloseToPlayer(){
+        Vector3 direction = player.position - npc.transform.position; // Provides the vector from the NPC to the player.
+        if (direction.magnitude < stopDistance) return true;
+        return false;
     }
 
     // These scripts are called by insect controller when Health UnityActions are fired

@@ -14,10 +14,14 @@ public class LevelManager : MonoBehaviour
 
     public bool isWin() { return killed == numEnemies; }
     
+    public GameObject player;
     public Inventory playerInventory;
     
     // ref to insect spawner
     private InsectSpawner insectSpawner;
+    
+    public AudioClip levelClearSfx;
+    public AudioClip gameOverSfx;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +29,8 @@ public class LevelManager : MonoBehaviour
         currentLevel = MainManager.Instance.currentLevel;
         currentSceneManager = GameObject.FindGameObjectWithTag("MainManager").GetComponent<CurrentSceneManager>();
         insectSpawner = GameObject.FindGameObjectWithTag("AlienSpawner").GetComponent<InsectSpawner>();
-        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerInventory = player.GetComponent<Inventory>();
         setParams();
         spawnLoop();
     }
@@ -35,38 +40,48 @@ public class LevelManager : MonoBehaviour
 
     // if the player dies then we fail the level
     public void playerIsDead(){
+        AudioSource.PlayClipAtPoint(gameOverSfx, player.transform.position);
+
         // no need to update any persistent data, since we lose weapons when we die
-        // tell scene manager that we failed the level
-        currentSceneManager.GameOver();
+
+        // Wait x secs and then load MainMenu Scene with gameover menu
+        StartCoroutine(End("gameover"));
     }
     
     // if all the enemies are dead, we win the game
-    void levelCleared (){
-        Debug.Log("Level cleared");
+    void levelCleared(){
+        AudioSource.PlayClipAtPoint(levelClearSfx, player.transform.position);
         // update main manager persistent data and get it to save it
         MainManager.Instance.clearedLevels[MainManager.Instance.currentLevel-1] = true;
         MainManager.Instance.obtainedWeapons = playerInventory.GetCurrentWeapons();
         //printArray(MainManager.Instance.obtainedWeapons);
         MainManager.Instance.WriteSave();
-
-        // tell scene manager that we cleared the level
-        currentSceneManager.LevelClear();
+        
+        // Wait x secs and then load MainMenu Scene with levelclear menu
+        StartCoroutine(End("levelclear"));
     }
+    
+    // end the scene (runs as a coroutine so we can wait before changing scene)
+    IEnumerator End(string result){
+         yield return new WaitForSeconds(3);
+         if (result == "levelclear") currentSceneManager.LevelClear();
+         else if (result == "gameover") currentSceneManager.GameOver();
+     }
     
     // Set difficulty params relative to level number
     void setParams(){
         switch(currentLevel){
             case 1:
-                spawnTime = 5;
-                numEnemies = 3;
+                spawnTime = 3;
+                numEnemies = 10;
                 break;
             case 2:
-                spawnTime = 5;
-                numEnemies = 5;
+                spawnTime = 3;
+                numEnemies = 25;
                 break;
             case 3:
-                spawnTime = 3;
-                numEnemies = 7;
+                spawnTime = 2;
+                numEnemies = 50;
                 break;
         }
     }
@@ -78,6 +93,7 @@ public class LevelManager : MonoBehaviour
         StartCoroutine("Spawn");
     }
 
+    // TODO adjust spawnTime relative to progress in level
     IEnumerator Spawn()
     {
         insectSpawner.SpawnInsect();

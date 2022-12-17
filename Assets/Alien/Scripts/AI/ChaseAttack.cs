@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// script for alien insects ChaseAttack state
 public class ChaseAttack : State
 {
     public ChaseAttack(GameObject _npc, UnityEngine.AI.NavMeshAgent _agent, Animator _anim, Transform _player)
                 : base(_npc, _agent, _anim, _player)
     {
         name = STATE.CHASEATTACK; // State set to match what NPC is doing.
-        agent.speed = 2; // Moves slower while attacking
+        agent.speed = 5; // Moves slighly slower while attacking
         agent.isStopped = false; // Set bool to determine NPC is moving.
+        agent.stoppingDistance = 3; // Stop x before the player
     }
 
     public override void Enter()
@@ -22,7 +24,6 @@ public class ChaseAttack : State
     public override void Update()
     {
         agent.SetDestination(player.position);  // Set goal for NPC to reach but navmesh processing might not have taken place, so...
-        // TODO add code to reduce player health here
         if (agent.hasPath) {                       // ...check if agent has a path yet.
             // If we cant see the player go back to patrolling
             if (!CanSeePlayer()) {
@@ -34,7 +35,6 @@ public class ChaseAttack : State
                 nextState = new Chase(npc, agent, anim, player); // If NPC can attack player, set correct nextState.
                 stage = EVENT.EXIT; // Set stage correctly as we are finished with Chase state.
             }
-            //TODO add state for when hit (GetHit)
         }
     }
 

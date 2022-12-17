@@ -7,15 +7,14 @@ using UnityEngine;
 public class WeaponSwitcher : MonoBehaviour
 {
     public int selectedWeapon = 0; 
+    public Gun selectedWeaponRef;
 
-    // Start is called before the first frame update
     void Start()
     {
         // Choose a weapon to start with
         SelectWeapon();
     }
 
-    // Update is called once per frame
     void Update()
     {
         SwitchWeapon();
@@ -72,7 +71,10 @@ public class WeaponSwitcher : MonoBehaviour
         {
             // only one weapon can be selected at a time
             if (i == selectedWeapon)
+            {
                 weapon.gameObject.SetActive(true);
+                selectedWeaponRef = weapon.gameObject.GetComponent<Gun>();
+            }
             else
                 weapon.gameObject.SetActive(false);
             i++;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// script for alien insects GetHit state
 public class GetHit : State
 {
 

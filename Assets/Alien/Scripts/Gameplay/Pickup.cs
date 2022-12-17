@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
+// class to manage pickup items (weapons and health)
 public class Pickup : MonoBehaviour
 {
     public float VerticalBobFrequency = 0.5f;
     public float BobbingAmount = 0.5f;
     public float RotatingSpeed = 90f;
+    
+    public AudioClip PickupSfx;
+    public GameObject PickupVfx;
 
     //public AudioClip PickupSfx;
     //public GameObject PickupVfxPrefab;
@@ -26,6 +30,7 @@ public class Pickup : MonoBehaviour
     {
         // Handle bobbing, where are we in the current bob animation
         float bobbingAnimationPhase = ((Mathf.Sin(Time.time * VerticalBobFrequency) * 0.1f) + 0.5f) * BobbingAmount;
+        // update transform position
         transform.position = startPos + Vector3.up * bobbingAnimationPhase;
 
         // Handle rotating
@@ -39,9 +44,20 @@ public class Pickup : MonoBehaviour
         }
     }
 
+    // to be inherited by Health and Weapon pickup specific scripts
     protected virtual void OnPicked(GameObject playerController)
     {
         Debug.Log("picked up by: " + playerController);
-        //PlayPickupFeedback();
+        PlayPickupFeedback();
+    }
+    
+    // play sound after pickup
+    public void PlayPickupFeedback()
+    {
+        if (PickupSfx)
+        {
+            AudioSource.PlayClipAtPoint(PickupSfx, transform.position);
+            GameObject playerVfxInstance = Instantiate(PickupVfx, transform.position, Quaternion.identity);
+        }
     }
 }

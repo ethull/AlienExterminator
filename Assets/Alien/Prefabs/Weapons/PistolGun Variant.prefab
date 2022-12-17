@@ -125,3 +125,5 @@ MonoBehaviour:
   range: 60
   impactForce: 10
   fireRate: 20
+  ShootSfx: {fileID: 8300000, guid: 7cba8416312418c499deffd8722b0674, type: 3}
+  DestroySfx: {fileID: 8300000, guid: 8ac9c33bfcb0d134ea2a4cef5d05d83c, type: 3}

@@ -18,6 +18,7 @@ TagManager:
   - LevelManager
   - AlienSpawner
   - Checkpoints
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX

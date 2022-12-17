@@ -305,6 +305,8 @@ MonoBehaviour:
   VerticalBobFrequency: 1
   BobbingAmount: 1
   RotatingSpeed: 360
+  PickupSfx: {fileID: 8300000, guid: 6f3e0904bbbace745bdef08cdbcdfec0, type: 3}
+  PickupVfx: {fileID: 100008, guid: 7075bd5fe1480184695a32611c15da57, type: 3}
   WeaponPrefab: {fileID: 2543354021801857850, guid: 326cd5fa11de14d4f83306c93c9cb447, type: 3}
 --- !u!65 &1251197174465937368
 BoxCollider:

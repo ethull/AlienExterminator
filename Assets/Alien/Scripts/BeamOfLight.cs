@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// spawn insects down in a beam of light (so they dont appear out of nowhere)
 public class BeamOfLight : MonoBehaviour
 {
     public InsectSpawner spawner;

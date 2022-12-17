@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// script for alien insects Attack state
 public class Attack : State
 {
     float rotationSpeed = 2.0f; // Set speed that NPC will rotate around to face player.

@@ -197,7 +197,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4448068258976056}
-  - component: {fileID: 2736697707179490244}
   - component: {fileID: 82712217391461128}
   - component: {fileID: 2522296368840063407}
   - component: {fileID: 54587624234064098}
@@ -228,19 +227,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
---- !u!114 &2736697707179490244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743903104223250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77fe8e0ecee3b9f4194005cf8469d027, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: {fileID: 0}
 --- !u!82 &82712217391461128
 AudioSource:
   m_ObjectHideFlags: 0
@@ -350,6 +336,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
+  PlayerDamageSfx: {fileID: 8300000, guid: 25e8bbe95ad4f344abd4dd8d7c8636ab, type: 3}
+  PlayerDeathSfx: {fileID: 8300000, guid: b1dafdffcee4fd549b08adaf4bc85142, type: 3}
+  PlayerDamageVfx: {fileID: 100000, guid: 358b75ea5451cf143ab19029a189097d, type: 3}
 --- !u!54 &54587624234064098
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -441,9 +430,9 @@ MonoBehaviour:
   targetAngles: {x: 0, y: 0, z: 0}
   playerCanMove: 1
   walkByDefault: 1
-  walkSpeed: 4
+  walkSpeed: 5
   sprintKey: 304
-  sprintSpeed: 8
+  sprintSpeed: 9
   jumpPower: 5
   canJump: 1
   canHoldJump: 0

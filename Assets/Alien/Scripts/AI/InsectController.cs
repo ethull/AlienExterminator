@@ -16,6 +16,12 @@ public class InsectController : MonoBehaviour
     protected Health health;
     private LevelManager levelManager;
 
+    public AudioClip InsectAttackSfx;
+    public AudioClip InsectDamageSfx;
+    public AudioClip InsectDeathSfx;
+
+    public GameObject InsectDamageVfx;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -47,12 +53,16 @@ public class InsectController : MonoBehaviour
     // Because we can get hit at any time
     public void OnDamaged(float dmg, GameObject src)
     {
+        GameObject insectVfxInstance = Instantiate(InsectDamageVfx, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        Destroy(insectVfxInstance, 3);
+        AudioSource.PlayClipAtPoint(InsectDamageSfx, transform.position);
         currentState.OnDamaged(dmg, src);
     }
 
     // When called from any state, we change to Dead state
     public void OnDie()
     {
+        AudioSource.PlayClipAtPoint(InsectDeathSfx, transform.position);
         currentState.OnDie();
         // Destroy gameObject after x seconds (after animation)
         Destroy(gameObject, 2.11f);
@@ -65,6 +75,7 @@ public class InsectController : MonoBehaviour
             //Debug.Log(gameObject);
             //Debug.Log(Time.time);
             Target.GetComponent<Health>().TakeDamage(5, gameObject);
+            AudioSource.PlayClipAtPoint(InsectAttackSfx, transform.position);
         }
     }
 

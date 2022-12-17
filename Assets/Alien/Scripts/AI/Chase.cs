@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// script for alien insects Chase state
 public class Chase : State
 {
     public Chase(GameObject _npc, UnityEngine.AI.NavMeshAgent _agent, Animator _anim, Transform _player)
                 : base(_npc, _agent, _anim, _player)
     {
         name = STATE.CHASE; // State set to match what NPC is doing.
-        agent.speed = 4; // Speed set to make sure NPC appears to be running.
+        agent.speed = 5.5f; // Speed set to make sure NPC appears to be running.
         agent.isStopped = false; // Set bool to determine NPC is moving.
     }
 

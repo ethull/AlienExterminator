@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Manage gun prefabs
 public class Gun : MonoBehaviour
 {
     public string gunName;
+    // location fo cam and muzzle
     private Transform fpsCam;
     private Transform muzzlePos;
+
+    // VFX effects
     public GameObject muzzleFlash;
     public GameObject impactEffect;
+
+    // SFX effects
+    public AudioClip ShootSfx;
+    public AudioClip DestroySfx;
     
+    // gun parameters, should be set in inspector for diff guns
     public float damage = 10f;
     public float range = 100f;
-    public float impactForce = 10f;
+    //public float impactForce = 10f;
     public float fireRate = 30f;
     
     private float nextTimeToFire = 0f;
@@ -26,10 +35,9 @@ public class Gun : MonoBehaviour
         muzzlePos = transform.Find("muzzle");
     }
 
-    // Update is called once per frame
+    // manage firerate
     void Update()
     {
-        //if (Input.GetButton("Fire") && Time.time >= nextTimeToFire) // if left mouse button clicked
         if (Input.GetMouseButtonDown(0) && Time.time >= nextTimeToFire) // if left mouse button clicked
         {
             // greater the firerate the less time between shots
@@ -39,9 +47,6 @@ public class Gun : MonoBehaviour
     }
     
     void Shoot () {
-        //Debug.Log(muzzleFlash);
-        //Debug.Log(fpsCam);
-        //Instantiate(muzzleFlash, fpsCam);
         GameObject flash = Instantiate(muzzleFlash, muzzlePos);
         Destroy(flash, 1f);
 
@@ -64,10 +69,15 @@ public class Gun : MonoBehaviour
                     closest.transform.GetComponent<Health>().TakeDamage(damage, gameObject);
                     //Destroy(closest.transform.gameObject); // destroy
                 }
+            // if we shoot a Crate then destroy it
             } else if (closest.transform.tag == "Destroyable") {
                 Destroy(closest.transform.gameObject);
+                AudioSource.PlayClipAtPoint(DestroySfx, closest.transform.position);
             }
+
+            AudioSource.PlayClipAtPoint(ShootSfx, transform.position);
             
+            // instantiate effect at location of object hit
             GameObject impact = Instantiate(impactEffect, closest.point, Quaternion.LookRotation(closest.normal));
             Destroy(impact, 2f);
         }

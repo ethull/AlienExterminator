@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// manage what buttons in the LevelSelect menu are shown, relative to completed levels
 public class LevelSelectUIManager : MonoBehaviour
 {
     GameObject levelButtons;
@@ -15,7 +16,7 @@ public class LevelSelectUIManager : MonoBehaviour
     void Update () {
         // enable/disable buttons relative to number of levels cleared
         int i = 0;
-        // for each transform (button)
+        // for each child transform (button)
         foreach (Transform button in levelButtons.transform)
         {
             //Debug.Log("level select: disabling buttons");

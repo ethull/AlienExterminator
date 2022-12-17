@@ -1,8 +1,9 @@
 using UnityEngine;
 
+// Extends Pickup with heal functionality
 public class HealthPickup : Pickup
 {
-    public float HealAmount;
+    public float HealAmount = 10;
 
     // override parent onpicked class method
     protected override void OnPicked(GameObject player)
@@ -11,7 +12,7 @@ public class HealthPickup : Pickup
         if (playerHealth && playerHealth.CanPickup())
         {
             playerHealth.Heal(HealAmount);
-            //PlayPickupFeedback();
+            PlayPickupFeedback();
             Destroy(gameObject);
         }
     }

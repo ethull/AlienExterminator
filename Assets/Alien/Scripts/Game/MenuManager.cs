@@ -28,8 +28,8 @@ public class MenuManager : MonoBehaviour
 
     // load a menu from the menu scene
     public void SelectMenu(string menuName){
-        Debug.Log("Selecting Menu: " + menuName);
-        Debug.Log(LevelClearMenu.GetComponentInChildren<Button>());
+        //Debug.Log("Selecting Menu: " + menuName);
+        //Debug.Log(LevelClearMenu.GetComponentInChildren<Button>());
 
         string currentSceneName = SceneManager.GetActiveScene().name;
         //if we are not in the mainmenu switch to main menu
@@ -59,5 +59,10 @@ public class MenuManager : MonoBehaviour
                 GameOverMenu.SetActive(true);
                 break;
         }
+    }
+    
+    // tell main manager to reset game progress
+    public void ResetProgress(){
+        MainManager.Instance.ResetSave();
     }
 }

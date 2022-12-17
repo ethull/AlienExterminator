@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-// Constructor for Idle state.
+// script for alien insects Idle state
 public class Idle : State
 {
     public Idle(GameObject _npc, UnityEngine.AI.NavMeshAgent _agent, Animator _anim, Transform _player)
@@ -32,7 +32,6 @@ public class Idle : State
             nextState = new Patrol(npc, agent, anim, player);
             stage = EVENT.EXIT; // The next time 'Process' runs, the EXIT stage will run instead, which will then return the nextState.
         }
-        //TODO add state for when hit (GetHit)
     }
 
     public override void Exit()

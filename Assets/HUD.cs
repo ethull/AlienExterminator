@@ -11,7 +11,6 @@ public class HUD : MonoBehaviour
     public Health player;
     public LevelManager aliens;
     
-    // Start is called before the first frame update
     void Awake()
     {
         healthBar = transform.Find("HealthBar").GetComponent<Slider>();
@@ -23,7 +22,6 @@ public class HUD : MonoBehaviour
         healthBar.maxValue = player.MaxHealth;
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         alienBar.maxValue = aliens.numEnemies;

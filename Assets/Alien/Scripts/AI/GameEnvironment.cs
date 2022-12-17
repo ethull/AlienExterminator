@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq; // Added since we need to use 'OrderBy' to sort waypoint sequence.
 
+// this script gets all the checkpoints from the scene and makes tham avaliable as an array
+//  used by the patrol script to control navigation of enemys
 public sealed class GameEnvironment
 {
     // Create an instance of the GameEnvironment class called 'instance'.
@@ -19,6 +21,7 @@ public sealed class GameEnvironment
     {
         get
         {
+            // If we have no static instance create one
             if(instance == null)
             {
                 instance = new GameEnvironment();
@@ -26,6 +29,7 @@ public sealed class GameEnvironment
                     GameObject.FindGameObjectsWithTag("Checkpoint"));
 
                 instance.checkpoints = instance.checkpoints.OrderBy(waypoint => waypoint.name).ToList(); // Order waypoints in ascending alphabetical order by name, so that the NPC follows them correctly.
+            // If we have a static instance, but the Checkpoints have changed (EG when loading two levels in one session), create new static instance
             } else if(instance.Checkpoints[0] == null){
                 instance = new GameEnvironment();
                 instance.Checkpoints.AddRange(

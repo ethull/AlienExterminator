@@ -101,7 +101,9 @@ MonoBehaviour:
   gunName: Sniper
   muzzleFlash: {fileID: 100000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
   impactEffect: {fileID: 100002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
-  damage: 100
+  damage: 50
   range: 200
   impactForce: 50
   fireRate: 1
+  ShootSfx: {fileID: 8300000, guid: eb4874a0790e8034191a82b45bd985fd, type: 3}
+  DestroySfx: {fileID: 8300000, guid: 8ac9c33bfcb0d134ea2a4cef5d05d83c, type: 3}

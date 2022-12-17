@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// script for alien insects Dead state
 public class Dead : State
 {
 
