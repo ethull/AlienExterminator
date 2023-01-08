@@ -32,6 +32,7 @@ public class InsectSpawner : MonoBehaviour
         float xpos = spawnLocation.position.x + Random.Range(min, max + 1);
         float zpos = spawnLocation.position.z + Random.Range(min, max + 1);
         // spawn a beam that will spawn the insect
+        //  at the location of the selected spawner with a random modifier, faceing a random direction (rotation around the y-axis)
         GameObject spawnedInsect = Instantiate(beam, new Vector3(xpos, spawnLocation.position.y, zpos), Quaternion.Euler(0,Random.Range (-90F, 90F),0)) as GameObject;
     }
 }
