@@ -4,8 +4,6 @@ using System.IO;
 // main static class, manage current menu and save data
 public class MainManager : MonoBehaviour
 {
-    // Start() and Update() methods deleted - we don't need them right now
-
     public static MainManager Instance;
     public int currentLevel;
     public bool[] clearedLevels; // index repersents level
@@ -15,16 +13,20 @@ public class MainManager : MonoBehaviour
     //  initialises with the Start menu
     public static string targetMenu = "Start";
 
+    // as soon as the attached gameobject is loaded into the scene run this method
     private void Awake()
     {
         //Debug.Log("main manager is awake");
+        // if we change scene MainManager instance will already exist
+        //  so we need to make sure only one Main manager instance exists
         if (Instance != null){
             Destroy(gameObject);
             return;
         }
-        // end of new code
 
         Instance = this;
+        // mark this object to not be destroyed on changing scene
+        //  so its properties are persisted between scenes
         DontDestroyOnLoad(gameObject);
         LoadSave();
     }

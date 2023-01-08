@@ -16,7 +16,8 @@ public class LevelSelectUIManager : MonoBehaviour
     void Update () {
         // enable/disable buttons relative to number of levels cleared
         int i = 0;
-        // for each child transform (button)
+        // for each child transform (button) in the button container
+        //  since we are iterating the transform components, we will need to get the gameobjects
         foreach (Transform button in levelButtons.transform)
         {
             //Debug.Log("level select: disabling buttons");
@@ -26,7 +27,7 @@ public class LevelSelectUIManager : MonoBehaviour
                 continue;
             }; 
             // EG [true, false, false] -> [ButtonEnabled, Button2Enabled, Button3Disabled]
-            //  if level after current is not cleared then disable the button
+            //  if level before current is not cleared then disable the button
             //  (enable buttons up to and including the first false)
 
             //Debug.Log("level select, cleared level: " + i + " status " + MainManager.Instance.clearedLevels[i-1]);

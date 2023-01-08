@@ -73,8 +73,8 @@ public class Inventory : MonoBehaviour
         if (!HasWeapon(weaponPrefab)){
             currentWeapons.Add(weaponPrefab);
             GameObject spawnedWeapon = Instantiate(weaponPrefab, weaponSwitcherLocation);
-            spawnedWeapon.transform.localPosition = Vector3.zero;
-            spawnedWeapon.transform.localRotation = Quaternion.identity;
+            spawnedWeapon.transform.localPosition = Vector3.zero; // set local position to inventory postion (Vector3(0, 0, 0) relative to parent)
+            spawnedWeapon.transform.localRotation = Quaternion.identity; // same rotation as parent
             return true;
         }
         return false;

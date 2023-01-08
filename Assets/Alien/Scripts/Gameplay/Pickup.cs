@@ -28,9 +28,12 @@ public class Pickup : MonoBehaviour
 
     void Update()
     {
-        // Handle bobbing, where are we in the current bob animation
+        // handle bobbing
+        // calculate where we are in the current bob animation
+        //  Mathf.Sin keeps numbers between -1 and 1 (so the animation will repeat)
+        //  Time.time: time in secs since the start of animation, other variables are used to adjust bobbing parameters
         float bobbingAnimationPhase = ((Mathf.Sin(Time.time * VerticalBobFrequency) * 0.1f) + 0.5f) * BobbingAmount;
-        // update transform position
+        // update transform position, relative to start position, and the last pos in the current bob animation
         transform.position = startPos + Vector3.up * bobbingAnimationPhase;
 
         // Handle rotating

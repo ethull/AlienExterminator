@@ -25,7 +25,7 @@ public class InsectSpawner : MonoBehaviour
     public void SpawnInsect()
     {
         // Choose a random spawn location from one of the avaliable spawners
-        //  will change with level
+        // Number and location of avaliable spawners will change with level
         Transform spawnLocation = spawners[Random.Range(0, spawners.Length)].transform;
 
         // add randomness so they spawn slightly apart

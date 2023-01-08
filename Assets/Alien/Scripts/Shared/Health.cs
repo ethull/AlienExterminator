@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
 {
     public float MaxHealth = 10f; // set default health, if its not set in the editor
     // UnityActions: are subscribed to by enemy and player controllers
+    // UnityActions v UnityEvents (Unity actions dont show up in the inspector), otherwise more of a choice of preference
     public UnityAction<float, GameObject> OnDamaged;
     public UnityAction OnDie;
     public UnityAction<float> OnHealed;
@@ -30,6 +31,7 @@ public class Health : MonoBehaviour
         //Debug.Log("Health: x damage taken from y:  " + damage + " " + damageSource);
         float healthBefore = CurrentHealth;
         CurrentHealth -= damage;
+        // Make sure Current health is between 0 and max health after takeing damage
         CurrentHealth = Mathf.Clamp(CurrentHealth, 0f, MaxHealth);
 
         // call OnDamage action
@@ -74,6 +76,7 @@ public class Health : MonoBehaviour
     {
         float healthBefore = CurrentHealth;
         CurrentHealth += healAmount;
+        // Make sure Current health is between 0 and max health after healing
         CurrentHealth = Mathf.Clamp(CurrentHealth, 0f, MaxHealth);
 
         float trueHealAmount = CurrentHealth - healthBefore;

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// SCRIPT UNUSED
+
 // script for alien insects Attack state
 public class Attack : State
 {
@@ -27,6 +29,7 @@ public class Attack : State
     {
         // Calculate direction and angle to player.
         Vector3 direction = player.position - npc.transform.position; // Provides the vector from the NPC to the player.
+        // Provides line of sight from the npc, using the direction vector
         float angle = Vector3.Angle(direction, npc.transform.forward); // Provide angle of sight.
         direction.y = 0; // Prevent character from tilting.
 

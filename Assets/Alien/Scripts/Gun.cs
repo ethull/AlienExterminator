@@ -35,9 +35,9 @@ public class Gun : MonoBehaviour
         muzzlePos = transform.Find("muzzle");
     }
 
-    // manage firerate
     void Update()
     {
+        // detect shots and manage firerate
         if (Input.GetMouseButtonDown(0) && Time.time >= nextTimeToFire) // if left mouse button clicked
         {
             // greater the firerate the less time between shots
@@ -50,7 +50,9 @@ public class Gun : MonoBehaviour
         GameObject flash = Instantiate(muzzleFlash, muzzlePos);
         Destroy(flash, 1f);
 
-        var hits = Physics.RaycastAll(fpsCam.position, fpsCam.forward, range); // list of everything you were pointing at
+        // cast a ray from our camera, and detect everything it hits
+        //  (get a list of everything you were pointing at)
+        var hits = Physics.RaycastAll(fpsCam.position, fpsCam.forward, range);
         if (hits.Length > 0) // if anything was hit
         {
             RaycastHit closest = hits[0]; // keep track of the closest
@@ -63,13 +65,13 @@ public class Gun : MonoBehaviour
             }
             if (closest.transform.GetComponent<InsectController>()) // if the closest hit object is an insect
             {
-                // If target is not dead (dont want to register damage as its dieing)
+                // If target is not dead (dont want to register damage if its dieing)
                 if (!closest.transform.GetComponent<Health>().IsDead){
                     // we can the health rather than the state, because the health will call a UnityAction
                     closest.transform.GetComponent<Health>().TakeDamage(damage, gameObject);
                     //Destroy(closest.transform.gameObject); // destroy
                 }
-            // if we shoot a Crate then destroy it
+            // if we shoot a destroyable object (mostly crates) then destroy it
             } else if (closest.transform.tag == "Destroyable") {
                 Destroy(closest.transform.gameObject);
                 AudioSource.PlayClipAtPoint(DestroySfx, closest.transform.position);
@@ -77,7 +79,7 @@ public class Gun : MonoBehaviour
 
             AudioSource.PlayClipAtPoint(ShootSfx, transform.position);
             
-            // instantiate effect at location of object hit
+            // instantiate effect at location (impact point in space and rotation of the target surface) of object hit
             GameObject impact = Instantiate(impactEffect, closest.point, Quaternion.LookRotation(closest.normal));
             Destroy(impact, 2f);
         }
